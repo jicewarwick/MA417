@@ -1,11 +1,14 @@
 #ifndef NORMALBOXMULLERSAMPLER_H_UJ90R1QK
 #define NORMALBOXMULLERSAMPLER_H_UJ90R1QK
 
-class NormalBoxMullerSampler {
+#include "Sampler.h"
+
+class NormalBoxMullerSampler : Sampler{
 public:
 	NormalBoxMullerSampler (void);
 	virtual ~NormalBoxMullerSampler ();
-	void getnumber(double*, double*);
+	double getnumber();
+	void getnumbers(double*, double*);
 };
 
 #endif /* end of include guard: NORMALBOXMULLERSAMPLER_H_UJ90R1QK */
