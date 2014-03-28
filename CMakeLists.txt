@@ -1,11 +1,18 @@
 project(Chapter2)
 
-add_executable(MonteCarlo)
+add_executable(Lent main)
 
-add_subdirectory(../RandomNumberGernerator)
-
+#add_library(Normals SHARED Normals)
 add_library(BrownianMotion SHARED BrownianMotion)
 add_library(UniformSampler SHARED UniformSampler)
+add_library(ExpDoubleSampler SHARED ExpDoubleSampler)
+add_library(NormalAccSampler SHARED NormalAccSampler)
+add_library(AcceptanceRejectionSampler SHARED AcceptanceRejectionSampler)
+add_library(NormalBoxMullerSampler SHARED NormalBoxMullerSampler)
 
-target_link_libraries(MonteCarlo BrownianMotion)
-target_link_libraries(MonteCarlo UniformSampler)
+target_link_libraries(Lent BrownianMotion)
+target_link_libraries(Lent UniformSampler)
+target_link_libraries(Lent ExpDoubleSampler)
+target_link_libraries(Lent AcceptanceRejectionSampler)
+target_link_libraries(Lent NormalAccSampler)
+target_link_libraries(Lent NormalBoxMullerSampler)
