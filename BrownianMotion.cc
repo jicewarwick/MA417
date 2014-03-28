@@ -7,9 +7,10 @@ BrownianMotion::BrownianMotion(void){
 	sd_ = 1;
 }
 
-BrownianMotion::BrownianMotion(double mean, double sigma){
+BrownianMotion::BrownianMotion(double mean, double sigma, double T){
 	mean_ = mean;
 	sd_ = sigma;
+	T_ = T;
 }
 
 BrownianMotion::~BrownianMotion(){ }
@@ -22,7 +23,7 @@ double BrownianMotion::getsd(void){
 	return sd_;
 }
 
-double BrownianMotion::getWt(double t){
+double BrownianMotion::getnumber(){
 	double ret = 0;
 
 	return ret;
