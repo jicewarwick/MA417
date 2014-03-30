@@ -4,7 +4,7 @@
 #include "Sampler.h"
 #include <ctime>
 
-class UniformSampler : Sampler{
+class UniformSampler : public Sampler{
 	public:
 		UniformSampler();
 		~UniformSampler();
