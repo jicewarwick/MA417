@@ -1,26 +1,36 @@
 #include <iostream>
 #include "Sampler.h"
 #include "UniformSampler.h"
-#include "BrownianMotion.h"
+#include "NormalBoxMullerSampler.h"
 #include "MonteCarloSimulation.h"
 #include <cmath>
-#include <vector>
+#include <algorithm>
+#include <ctime>
 
 double f(double);
+double g(double);
 
 int main(int argc, char *argv[]) {
+	srand((unsigned)time(0));
+	UniformSampler *U = new UniformSampler();
+	MonteCarloSimulation *uni_sim = new MonteCarloSimulation(*g, U, 1000000);
+	double uni_mean = uni_sim->simulate();
+
 
 	//Monte Carlo Simulation for \E[e^(-rT)(S(T)-K)]
-	double T = 1;
-	double sigma = 0.3;
-	BrownianMotion *W = new BrownianMotion(0, sigma * sqrt(T));
+	NormalBoxMullerSampler *W = new NormalBoxMullerSampler();
 	MonteCarloSimulation *mon_sim = new MonteCarloSimulation(*f, W, 1000000);
 	double price_call = mon_sim->simulate();
 
+	std::cout << "Monte Carlo Estimator for mean of Uniform Distribution is " << uni_mean << std::endl;
 	std::cout << "Monte Carlo Estimator for Call option is " << price_call << std::endl;
 	std::cout << "The control variates estimator for Y_i: " << std::endl;
 	std::cout << "Antithetic estimator for Y_i: " << std::endl;
 	return 0;
+}
+
+double g(double x){
+	return x;
 }
 
 double f(double x){
@@ -30,7 +40,8 @@ double f(double x){
 	double K = 50;
 	double S0 = 50;
 	double ret = 0;
-	ret = exp(-r * T)*(S0 *exp((r-pow(sigma, 2)*T)+ sigma * x) - K);
+	ret = exp(-r * T)*(S0 * exp((r - pow(sigma, 2)/ 2.0) * T + sigma * x * sqrt(T)) - K);
+	ret = std::max(ret, 0.0);
 
-	return std::max(ret, 0.0);
+	return ret;
 }

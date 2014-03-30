@@ -5,7 +5,6 @@ UniformSampler::UniformSampler(){}
 UniformSampler::~UniformSampler(){}
 
 double UniformSampler::getnumber(void){
-	srand((unsigned)time(0));
 	double ret =rand() / static_cast<double>(RAND_MAX);
 	return ret;
 }
