@@ -1,4 +1,4 @@
-#include "Normals.h"
+#include "NormalAccSampler.h"
 #include "BrownianMotion.h"
 #include <cmath>
 
@@ -7,10 +7,9 @@ BrownianMotion::BrownianMotion(void){
 	sd_ = 1;
 }
 
-BrownianMotion::BrownianMotion(double mean, double sigma, double T){
+BrownianMotion::BrownianMotion(double mean, double sigma){
 	mean_ = mean;
 	sd_ = sigma;
-	T_ = T;
 }
 
 BrownianMotion::~BrownianMotion(){ }
@@ -23,11 +22,19 @@ double BrownianMotion::getsd(void){
 	return sd_;
 }
 
+void BrownianMotion::setmean(double mean){
+	mean_ = mean;
+}
+
+void BrownianMotion::setsd(double sd){
+	sd_ = sd;
+}
+
 double BrownianMotion::getnumber(){
 	double ret = 0;
+	NormalAccSampler *norm = new NormalAccSampler();
+	ret = norm->getnumber() * sd_;
 
 	return ret;
 }
-
-
 

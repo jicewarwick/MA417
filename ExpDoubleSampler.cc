@@ -17,3 +17,7 @@ double ExpDoubleSampler::getnumber() {
 	}
 	return ret;
 }
+std::vector<double> ExpDoubleSampler::getnumbers(int n){
+	std::vector<double> ret;
+
+}

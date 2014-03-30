@@ -10,8 +10,8 @@ class AcceptanceRejectionSampler : public Sampler{
 public:
 	AcceptanceRejectionSampler(double (*f) (double) = NULL, double (*g) (double) = NULL, double c = 0);
 	virtual ~AcceptanceRejectionSampler (void);
-	double getnumber(void);
-	std::vector<double> getnumbers(int);
+	virtual double getnumber(void);
+	virtual std::vector<double> getnumbers(int);
 	
 
 private:
