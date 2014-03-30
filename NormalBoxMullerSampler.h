@@ -4,7 +4,7 @@
 #include "Sampler.h"
 #include <vector>
 
-class NormalBoxMullerSampler : Sampler{
+class NormalBoxMullerSampler : public Sampler{
 public:
 	NormalBoxMullerSampler (void);
 	virtual ~NormalBoxMullerSampler ();
