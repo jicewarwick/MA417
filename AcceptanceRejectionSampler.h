@@ -5,6 +5,7 @@
 #include "Sampler.h"
 #include "UniformSampler.h"
 #include <vector>
+#include <cstdlib>
 
 class AcceptanceRejectionSampler : public Sampler{
 public:
@@ -18,6 +19,7 @@ private:
 	double (*f_) (double);
 	double (*g_) (double);
 	double c_;
+	UniformSampler U_;
 };
 
 #endif /* end of include guard: ACCEPTANCEREJECTIONSAMPLER_H_O4IVNCEY */

@@ -1,7 +1,6 @@
 #ifndef SAMPLER_H_ZKCGVOHS
 #define SAMPLER_H_ZKCGVOHS
 
-#include <cstdlib>
 #include <vector>
 
 class Sampler{

@@ -5,13 +5,16 @@
 #include "Sampler.h"
 #include "UniformSampler.h"
 
-class ExpInvSampler : Sampler {
+class ExpInvSampler : public Sampler {
 	public:
 		ExpInvSampler(double);
+		~ExpInvSampler();
 		double getnumber();
+		std::vector<double> getnumbers(int n);
 
 	private:
 		double lambda_;
+		UniformSampler U_;
 
 };
 

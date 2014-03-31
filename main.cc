@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Sampler.h"
 #include "UniformSampler.h"
+#include "NormalAccSampler.h"
 #include "NormalBoxMullerSampler.h"
 #include "MonteCarloSimulation.h"
 #include <cmath>
@@ -11,7 +12,6 @@ double f(double);
 double g(double);
 
 int main(int argc, char *argv[]) {
-	srand((unsigned)time(0));
 	UniformSampler *U = new UniformSampler();
 	MonteCarloSimulation *uni_sim = new MonteCarloSimulation(*g, U, 1000000);
 	double uni_mean = uni_sim->simulate();
@@ -21,6 +21,10 @@ int main(int argc, char *argv[]) {
 	NormalBoxMullerSampler *W = new NormalBoxMullerSampler();
 	MonteCarloSimulation *mon_sim = new MonteCarloSimulation(*f, W, 1000000);
 	double price_call = mon_sim->simulate();
+
+	//clean up
+	U->~UniformSampler();
+	W->~NormalBoxMullerSampler();
 
 	std::cout << "Monte Carlo Estimator for mean of Uniform Distribution is " << uni_mean << std::endl;
 	std::cout << "Monte Carlo Estimator for Call option is " << price_call << std::endl;

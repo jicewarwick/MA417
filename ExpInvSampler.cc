@@ -1,14 +1,16 @@
 #include "ExpInvSampler.h"
+#include <cmath>
 
 ExpInvSampler::ExpInvSampler(double lambda){
+	U_ = UniformSampler();
 	lambda_ = lambda;
 }
 
-double ExpInvSampler::getnumber(){
-	UniformSampler *tmp = new UniformSampler;
-	double ret = 0;
-	ret = tmp->getnumber();
-	ret = -log(ret) / lambda_;
+ExpInvSampler::~ExpInvSampler(){
+	U_.~UniformSampler();
+}
 
+double ExpInvSampler::getnumber(){
+	double ret = U_.getnumber();
 	return ret;
 }

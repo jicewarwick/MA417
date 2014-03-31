@@ -2,7 +2,6 @@
 #define UNIFORMSAMPLER_H_UHPWUTQT
 
 #include "Sampler.h"
-#include <ctime>
 
 class UniformSampler : public Sampler{
 	public:
