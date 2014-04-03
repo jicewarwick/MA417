@@ -3,6 +3,7 @@
 #include "UniformSampler.h"
 #include "NormalAccSampler.h"
 #include "NormalBoxMullerSampler.h"
+#include "BrownianMotion.h"
 #include "MonteCarloSimulation.h"
 #include <cmath>
 #include <algorithm>
@@ -16,6 +17,9 @@ int main(int argc, char *argv[]) {
 	MonteCarloSimulation *uni_sim = new MonteCarloSimulation(*g, U, 1000000);
 	double uni_mean = uni_sim->simulate();
 
+	//Brownian Motion Tester
+	BrownianMotion *B = new BrownianMotion();
+	std::vector<double> v = B->getnumbers(34);
 
 	//Monte Carlo Simulation for \E[e^(-rT)(S(T)-K)]
 	NormalBoxMullerSampler *W = new NormalBoxMullerSampler();

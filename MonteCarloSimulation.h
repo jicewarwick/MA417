@@ -5,7 +5,7 @@
 
 class MonteCarloSimulation {
 public:
-	MonteCarloSimulation (double (*f) (double), Sampler* randgen, int n = 1000);
+	MonteCarloSimulation (double (*f) (double), Sampler* randgen, int n = 10000);
 	virtual ~MonteCarloSimulation ();
 	double simulate();
 

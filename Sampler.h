@@ -6,7 +6,7 @@
 class Sampler{
 	public:
 		Sampler(){}
-		~Sampler(){}
+		virtual ~Sampler(){}
 		virtual double getnumber() = 0;
 		virtual std::vector<double> getnumbers(int);
 };
