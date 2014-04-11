@@ -10,10 +10,10 @@ public:
 	BrownianMotion(double, double, double);
 	virtual ~BrownianMotion (){}
 
-
 	double getmean(void) const {return mean_;}
 	double getsd(void) const {return sd_;}
 	double getX0(void) const {return X0_;}
+	double get_normal_rand(void) {return norm_.getnumber();}
 
 	void setmean(double mean){mean_ = mean;}
 	void setsd(double sd){sd_ = sd;}

@@ -3,17 +3,12 @@
 
 #include "BrownianMotion.h"
 
-class GeometricBrownianMotion : public StochasticProcess {
+class GeometricBrownianMotion : public BrownianMotion {
 public:
 	GeometricBrownianMotion (double X0, double mean, double sigma);
 	virtual ~GeometricBrownianMotion (){}
 
 private:
-	double X0_;
-	double mean_;
-	double sd_;
-	NormalBoxMullerSampler norm_;
-
 	virtual double step(double currentX, double h);
 	
 };

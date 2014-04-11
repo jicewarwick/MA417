@@ -1,16 +1,12 @@
 #include "GeometricBrownianMotion.h"
 #include <cmath>
 
-GeometricBrownianMotion::GeometricBrownianMotion (double X0, double mean, double sigma){ 
-	X0_ = X0;
-	mean_ = mean;
-	sd_ = sigma;
-	NormalBoxMullerSampler norm_;
+GeometricBrownianMotion::GeometricBrownianMotion (double X0, double mean, double sigma) : BrownianMotion(X0, mean, sigma){
 }
 
 double GeometricBrownianMotion::step(double currentX, double h){
-	double ret = mean_ - pow(sd_, 2) / 2.0;
-	ret = ret * h + sd_ * sqrt(h) * norm_.getnumber();
+	double ret = getmean() - pow(getsd(), 2) / 2.0;
+	ret = ret * h + getsd() * sqrt(h) * get_normal_rand();
 	ret = currentX * exp(ret);
 
 	return ret;
