@@ -1,10 +1,13 @@
 #include <iostream>
+#include "Normals.h"
 #include "Sampler.h"
 #include "UniformSampler.h"
+#include "ExpInvSampler.h"
 #include "NormalAccSampler.h"
 #include "NormalBoxMullerSampler.h"
 #include "BrownianMotion.h"
 #include "MonteCarloSimulation.h"
+#include "ControlVariates.h"
 #include <cmath>
 #include <algorithm>
 #include <ctime>
@@ -12,27 +15,38 @@
 double f(double);
 double g(double);
 
-int main(int argc, char *argv[]) {
-	UniformSampler *U = new UniformSampler();
+int main(){
+	Sampler *U = new UniformSampler();
+	std::vector<double> u = U->getnumbers(34);
 	MonteCarloSimulation *uni_sim = new MonteCarloSimulation(*g, U, 1000000);
 	double uni_mean = uni_sim->simulate();
 
 	//Brownian Motion Tester
 	BrownianMotion *B = new BrownianMotion();
-	std::vector<double> v = B->getnumbers(34);
+
+	//ExpInvSampler Testor
 
 	//Monte Carlo Simulation for \E[e^(-rT)(S(T)-K)]
 	NormalBoxMullerSampler *W = new NormalBoxMullerSampler();
-	MonteCarloSimulation *mon_sim = new MonteCarloSimulation(*f, W, 1000000);
+	long n = 10;
+	double sigma = 0.3;
+	MonteCarloSimulation *mon_sim = new MonteCarloSimulation(*f, W, n);
 	double price_call = mon_sim->simulate();
+	double lower_limit = price_call - InverseCumulativeNormal(.99) * sigma / sqrt(n);
+	double upper_limit = price_call + InverseCumulativeNormal(.99) * sigma / sqrt(n);
+
+	//Control Variates Estimator
+	ControlVariates call(W, f, n, 0);
+	//double call_var = call.getCotrolVariatesEstimator();
 
 	//clean up
-	U->~UniformSampler();
-	W->~NormalBoxMullerSampler();
+	U->~Sampler();
+	B->~BrownianMotion();
 
 	std::cout << "Monte Carlo Estimator for mean of Uniform Distribution is " << uni_mean << std::endl;
 	std::cout << "Monte Carlo Estimator for Call option is " << price_call << std::endl;
-	std::cout << "The control variates estimator for Y_i: " << std::endl;
+	std::cout << "With 98\% confidence interval: (" << lower_limit << "," << upper_limit << ")" << std::endl;
+	//std::cout << "The control variates estimator for Y_i: " << call_var << std::endl;
 	std::cout << "Antithetic estimator for Y_i: " << std::endl;
 	return 0;
 }

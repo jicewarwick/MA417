@@ -3,21 +3,18 @@
 #include <cmath>
 
 BrownianMotion::BrownianMotion(void){
-	BrownianMotion(0,1);
+	BrownianMotion(0, 0, 1);
 }
 
-BrownianMotion::BrownianMotion(double mean, double sigma){
+BrownianMotion::BrownianMotion(double X0, double mean, double sigma){
+	X0_ = X0;
 	mean_ = mean;
 	sd_ = sigma;
-	NormalAccSampler norm_;
+	NormalBoxMullerSampler norm_;
 }
 
-BrownianMotion::~BrownianMotion(){ }
-
-double BrownianMotion::getnumber(){
-	double ret = 0;
-	ret = norm_.getnumber() * sd_;
-
+double BrownianMotion::step(double currentX, double h){
+	double ret;
+	ret = currentX + h * mean_ + sqrt(h) * sd_ * norm_.getnumber();
 	return ret;
 }
-

@@ -10,7 +10,6 @@ class NormalAccSampler : public AcceptanceRejectionSampler{
 public:
 	NormalAccSampler (void);
 	~NormalAccSampler (void);
-
 };
 
 #endif /* end of include guard: NORMALACCSAMPLER_H_QFGIW8Q9 */
