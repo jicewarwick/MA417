@@ -5,8 +5,8 @@ class StochasticProcess {
 public:
 	StochasticProcess(){}
 	virtual ~StochasticProcess(){}
-	double get_terminalvalue(double T, int numberofsteps, double X0);
-	void get_samplepath(double T, int numberofsteps, double X0, double *p);
+	virtual double get_terminalvalue(double T, int numberofsteps, double X0);
+	virtual void get_samplepath(double T, int numberofsteps, double X0, double *p);
 
 private:
 	virtual double step(double currentX, double h)=0;
