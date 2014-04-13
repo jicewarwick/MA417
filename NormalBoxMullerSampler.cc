@@ -7,7 +7,6 @@ const double PI = atan(1) * 4;
 NormalBoxMullerSampler::NormalBoxMullerSampler(void) : Sampler(){
 	UniformSampler U_;
 }
-NormalBoxMullerSampler::~NormalBoxMullerSampler(void){}
 
 std::vector<double> NormalBoxMullerSampler::getnumbers(int n){
 	std::vector<double> ret;

@@ -16,15 +16,10 @@ double f(double);
 double g(double);
 
 int main(){
-	Sampler *U = new UniformSampler();
+	UniformSampler *U = new UniformSampler();
 	std::vector<double> u = U->getnumbers(34);
 	MonteCarloSimulation *uni_sim = new MonteCarloSimulation(*g, U, 1000000);
 	double uni_mean = uni_sim->simulate();
-
-	//Brownian Motion Tester
-	BrownianMotion *B = new BrownianMotion();
-
-	//ExpInvSampler Testor
 
 	//Monte Carlo Simulation for \E[e^(-rT)(S(T)-K)]
 	NormalBoxMullerSampler *W = new NormalBoxMullerSampler();
@@ -40,8 +35,7 @@ int main(){
 	//double call_var = call.getCotrolVariatesEstimator();
 
 	//clean up
-	U->~Sampler();
-	B->~BrownianMotion();
+	U->~UniformSampler();
 
 	std::cout << "Monte Carlo Estimator for mean of Uniform Distribution is " << uni_mean << std::endl;
 	std::cout << "Monte Carlo Estimator for Call option is " << price_call << std::endl;

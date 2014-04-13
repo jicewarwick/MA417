@@ -10,6 +10,7 @@ add_executable(Q4 Q4)
 set(CMAKE_CXX_FLAGS "-g -std=c++11")
 
 add_library(Normals SHARED Normals)
+add_library(Statistics SHARED Statistics)
 add_library(Sampler SHARED Sampler)
 add_library(ConstantSampler SHARED ConstantSampler)
 add_library(UniformSampler SHARED UniformSampler)
@@ -31,6 +32,7 @@ add_library(PoissonProcess SHARED PoissonProcess)
 
 add_library(dataExport SHARED dataExport)
 
+target_link_libraries(Lent Statistics)
 target_link_libraries(Lent Normals)
 target_link_libraries(Lent Sampler)
 target_link_libraries(Lent ConstantSampler)

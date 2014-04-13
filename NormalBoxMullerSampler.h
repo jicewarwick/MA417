@@ -7,8 +7,8 @@
 
 class NormalBoxMullerSampler : public Sampler{
 public:
-	NormalBoxMullerSampler (void);
-	virtual ~NormalBoxMullerSampler ();
+	NormalBoxMullerSampler(void);
+	virtual ~NormalBoxMullerSampler(){}
 	double getnumber();
 	std::vector<double> getnumbers(int);
 private:
